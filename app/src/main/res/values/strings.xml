@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Music-App</string>
+
+    <string name="playlist">Playlist</string>
+    <string name="player">Now playing</string>
+
+    <string name="library">Biblioteka</string>
+    <string name="songs">Lista utworów</string>
+    <string name="authors">Wykonawcy</string>
+    <string name="albums">Albumy</string>
+    <string name="downloaded">Pobrana muzyka</string>
+    <string name="latest_songs">Ostatnio dodane</string>
+
+
+</resources>

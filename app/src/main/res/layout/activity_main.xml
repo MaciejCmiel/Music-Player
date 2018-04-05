@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.macx.music_app.MainActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="@string/library"
+        android:textColor="@android:color/black"
+        android:textSize="28sp"
+        android:textStyle="bold" />
+
+    <View style="@style/SeparatorView" />
+
+    <TextView
+        android:id="@+id/songs"
+        style="@style/MenuOptions"
+        android:text="@string/songs" />
+
+    <View style="@style/SeparatorView" />
+
+    <TextView
+        android:id="@+id/authors"
+        style="@style/MenuOptions"
+        android:text="@string/authors" />
+
+    <View style="@style/SeparatorView" />
+
+    <TextView
+        android:id="@+id/albums"
+        style="@style/MenuOptions"
+        android:text="@string/albums" />
+
+    <View style="@style/SeparatorView" />
+
+    <TextView
+        android:id="@+id/downloaded"
+        style="@style/MenuOptions"
+        android:text="@string/downloaded" />
+
+    <View style="@style/SeparatorView" />
+
+    <TextView
+        android:id="@+id/latest"
+        style="@style/MenuOptions"
+        android:text="@string/latest_songs"
+        android:textColor="@android:color/black"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            style="@style/main_latest_image"
+            android:src="@drawable/sail_image" />
+
+        <ImageView
+            style="@style/main_latest_image"
+            android:src="@drawable/somewhere_over" />
+
+    </LinearLayout>
+
+</LinearLayout>
