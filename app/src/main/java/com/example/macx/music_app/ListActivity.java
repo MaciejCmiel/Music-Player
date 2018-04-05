@@ -25,7 +25,7 @@ public class ListActivity extends AppCompatActivity {
         //Now it is useless but for future features this activity will have information
         //what type of list should be displayed depending on which TextView was clicked
         //now all four TextViews are displaying the same list of songs
-        String groupType = getIntent().getStringExtra("TYPE");
+        //String groupType = getIntent().getStringExtra("TYPE");
 
         ArrayList<Song> songs = new ArrayList<>();
 

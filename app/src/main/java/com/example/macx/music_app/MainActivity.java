@@ -8,6 +8,11 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final String INTENT_SONGS = "songs";
+    public static final String INTENT_ALBUMS = "albums";
+    public static final String INTENT_AUTHORS = "authors";
+    public static final String INTENT_DOWNLOADS = "downloads";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -16,14 +21,14 @@ public class MainActivity extends AppCompatActivity {
         TextView songsList = findViewById(R.id.songs);
         TextView albumsList = findViewById(R.id.albums);
         TextView authorsList = findViewById(R.id.authors);
-        TextView downloaded = findViewById(R.id.downloaded);
+        TextView downloads = findViewById(R.id.downloaded);
 
         songsList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 Intent typeOfList = new Intent(MainActivity.this, ListActivity.class);
-                typeOfList.putExtra("TYPE", "songs");
+                typeOfList.putExtra("TYPE", INTENT_SONGS);
                 startActivity(typeOfList);
             }
         });
@@ -33,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent typeOfList = new Intent(MainActivity.this, ListActivity.class);
-                typeOfList.putExtra("TYPE", "albums");
+                typeOfList.putExtra("TYPE", INTENT_ALBUMS);
                 startActivity(typeOfList);
             }
         });
@@ -43,17 +48,17 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent typeOfList = new Intent(MainActivity.this, ListActivity.class);
-                typeOfList.putExtra("TYPE", "authors");
+                typeOfList.putExtra("TYPE", INTENT_AUTHORS);
                 startActivity(typeOfList);
             }
         });
 
-        downloaded.setOnClickListener(new View.OnClickListener() {
+        downloads.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 Intent typeOfList = new Intent(MainActivity.this, ListActivity.class);
-                typeOfList.putExtra("TYPE", "downloaded");
+                typeOfList.putExtra("TYPE", INTENT_DOWNLOADS);
                 startActivity(typeOfList);
             }
         });
