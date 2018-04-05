@@ -1,0 +1,4 @@
+<resources>
+    <dimen name="list_item_height">88dp</dimen>
+    <dimen name="play_screen_image">225dp</dimen>
+</resources>

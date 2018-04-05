@@ -7,8 +7,8 @@
 
     <ImageView
         android:id="@+id/image_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/play_screen_image"
+        android:layout_height="@dimen/play_screen_image"
         android:layout_gravity="center"
         android:background="@drawable/sail_image" />
 
