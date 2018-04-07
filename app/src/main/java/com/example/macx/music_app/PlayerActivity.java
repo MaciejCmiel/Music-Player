@@ -133,6 +133,10 @@ public class PlayerActivity extends AppCompatActivity {
         releaseMediaPlayer();
     }
 
+    /**
+     * We need to check if media player is not null before we call release() method on it
+     * otherwise this will cause NullPointerException
+     */
     private void releaseMediaPlayer() {
         if (mediaPlayer != null) {
             mediaPlayer.release();
