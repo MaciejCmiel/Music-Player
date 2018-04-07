@@ -1,6 +1,8 @@
 package com.example.macx.music_app;
 
+import android.content.Context;
 import android.content.Intent;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -19,11 +21,35 @@ public class PlayerActivity extends AppCompatActivity {
 
     private MediaPlayer mediaPlayer;
     private ImageView playPause;
+    private AudioManager audioManager;
+
+    //it is a parameter for methods {@link requestAudioFocus} and {@link abandonAudioFocus}
+    AudioManager.OnAudioFocusChangeListener onAudioFocusChangeListener = new AudioManager.OnAudioFocusChangeListener() {
+        @Override
+        public void onAudioFocusChange(int focusChange) {
+            if (focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT || focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK) {
+                try {
+                    mediaPlayer.pause();
+                } catch (Exception e) {
+                    // do nothing
+                }
+            } else if (focusChange == AudioManager.AUDIOFOCUS_GAIN) {
+
+                mediaPlayer.start();
+            } else if (focusChange == AudioManager.AUDIOFOCUS_LOSS) {
+
+                releaseMediaPlayer();
+            }
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstance) {
         super.onCreate(savedInstance);
         setContentView(R.layout.play_screen);
+
+        // Create and setup the {@link AudioManager} to request audio focus
+        audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 
         Log.i(PlayerActivity.class.getName(), "RUN TEST");
 
@@ -44,7 +70,6 @@ public class PlayerActivity extends AppCompatActivity {
 
         mediaPlayer = MediaPlayer.create(PlayerActivity.this, rawId);
 
-
         ImageView rewindBack = findViewById(R.id.rewind_backward);
         ImageView rewindForward = findViewById(R.id.rewind_forward);
         playPause = findViewById(R.id.play_pause);
@@ -59,14 +84,14 @@ public class PlayerActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 playPause.setImageResource(R.drawable.play);
-
             }
         });
 
         rewindForward.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mediaPlayer.release();
+
+                releaseMediaPlayer();
                 Intent backToPlaylist = new Intent(PlayerActivity.this, ListActivity.class);
                 startActivity(backToPlaylist);
             }
@@ -76,11 +101,17 @@ public class PlayerActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if (mediaPlayer.isPlaying()) {
+                if (mediaPlayer != null && mediaPlayer.isPlaying()) {
                     mediaPlayer.pause();
                     playPause.setImageResource(R.drawable.play);
                 } else {
-                    mediaPlayer.start();
+
+                    int result = audioManager.requestAudioFocus(onAudioFocusChangeListener,
+                            AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
+
+                    if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
+                        mediaPlayer.start();
+                    }
                     playPause.setImageResource(R.drawable.pause);
                 }
             }
@@ -94,6 +125,17 @@ public class PlayerActivity extends AppCompatActivity {
                 startActivity(backToPlaylist);
             }
         });
+    }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        releaseMediaPlayer();
+    }
+
+    private void releaseMediaPlayer() {
+        if (mediaPlayer != null) {
+            mediaPlayer.release();
+        }
     }
 }
