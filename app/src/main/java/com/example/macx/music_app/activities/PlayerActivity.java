@@ -1,4 +1,4 @@
-package com.example.macx.music_app;
+package com.example.macx.music_app.activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,6 +10,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.macx.music_app.R;
 
 import java.io.IOException;
 

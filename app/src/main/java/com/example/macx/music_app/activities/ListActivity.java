@@ -1,4 +1,4 @@
-package com.example.macx.music_app;
+package com.example.macx.music_app.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,6 +6,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+
+import com.example.macx.music_app.R;
+import com.example.macx.music_app.Song;
+import com.example.macx.music_app.SongAdapter;
 
 import java.util.ArrayList;
 

@@ -25,25 +25,33 @@ public class SongAdapter extends ArrayAdapter<Song> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        View listItemView = convertView;
-        if (listItemView == null) {
-            listItemView = LayoutInflater.from(getContext()).inflate(
+        ViewHolder holder;
+        
+        if (convertView == null) {
+            convertView = LayoutInflater.from(getContext()).inflate(
                     R.layout.list_item, parent, false);
-        }
-        Song currentSong = getItem(position);
 
+            holder = new ViewHolder();
+            holder.title = convertView.findViewById(R.id.title_text);
+            holder.author = convertView.findViewById(R.id.author_text);
+            holder.imageView = convertView.findViewById(R.id.list_item_image);
+        } else {
+            holder = (ViewHolder) convertView.getTag();
+        }
+
+        Song currentSong = getItem(position);
         Log.i(SongAdapter.class.getName(), "TEST name: " + currentSong.getName());
 
-        //find each TextView and set proper text for them
-        TextView title = listItemView.findViewById(R.id.title_text);
-        title.setText(currentSong.getName());
+        holder.title.setText(currentSong.getName());
+        holder.author.setText(currentSong.getAuthor());
+        holder.imageView.setImageResource(currentSong.getImageId());
 
-        TextView author = listItemView.findViewById(R.id.author_text);
-        author.setText(currentSong.getAuthor());
+        return convertView;
+    }
 
-        ImageView imageView = listItemView.findViewById(R.id.list_item_image);
-        imageView.setImageResource(currentSong.getImageId());
-
-        return listItemView;
+    static class ViewHolder {
+        private TextView title;
+        private TextView author;
+        private ImageView imageView;
     }
 }

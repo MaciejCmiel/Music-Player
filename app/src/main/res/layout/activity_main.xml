@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.macx.music_app.MainActivity">
+    tools:context="com.example.macx.music_app.activities.MainActivity">
 
     <TextView
         android:layout_width="wrap_content"

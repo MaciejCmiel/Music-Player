@@ -1,10 +1,12 @@
-package com.example.macx.music_app;
+package com.example.macx.music_app.activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+
+import com.example.macx.music_app.R;
 
 public class MainActivity extends AppCompatActivity {
 
